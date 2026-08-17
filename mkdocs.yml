@@ -6,7 +6,7 @@ nav:
   - Home: index.md
   - Setup:
     - ./setup/account.md
-    - Entity IDs and names: ./entity_ids.md
+    - ./entity_ids.md
     - ./setup/cost_tracker.md
     - ./setup/tariff_comparison.md
     - ./setup/energy_dashboard.md
