@@ -27,7 +27,7 @@ from ..utils.attributes import dict_to_typed_dict
 from ..coordinators.previous_consumption_and_rates import PreviousConsumptionCoordinatorResult
 from ..utils.rate_information import get_peak_name, get_rate_index, get_unique_rates
 
-from ..statistics.cost import async_import_external_statistics_from_cost, get_electricity_cost_statistic_unique_id
+from ..statistics.cost import async_import_external_statistics_from_cost, get_electricity_cost_statistic_name, get_electricity_cost_statistic_unique_id
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -144,7 +144,7 @@ class OctopusEnergyPreviousAccumulativeElectricityCost(CoordinatorEntity, Octopu
           current,
           self._hass,
           get_electricity_cost_statistic_unique_id(self._serial_number, self._mpan, self._is_export),
-          self.name,
+          get_electricity_cost_statistic_name(self._serial_number, self._mpan, self._is_export),
           consumption_and_cost["charges"],
           rate_data,
           "GBP",

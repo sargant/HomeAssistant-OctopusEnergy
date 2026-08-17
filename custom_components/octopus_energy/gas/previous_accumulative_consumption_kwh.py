@@ -27,7 +27,7 @@ from . import (
 from .base import (OctopusEnergyGasSensor)
 from ..utils.attributes import dict_to_typed_dict
 from ..coordinators.previous_consumption_and_rates import PreviousConsumptionCoordinatorResult
-from ..statistics.consumption import async_import_external_statistics_from_consumption, get_gas_consumption_statistic_unique_id
+from ..statistics.consumption import async_import_external_statistics_from_consumption, get_gas_consumption_statistic_name, get_gas_consumption_statistic_unique_id
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -130,7 +130,7 @@ class OctopusEnergyPreviousAccumulativeGasConsumptionKwh(CoordinatorEntity, Octo
         utcnow(),
         self._hass,
         get_gas_consumption_statistic_unique_id(self._serial_number, self._mprn, True),
-        self.name,
+        get_gas_consumption_statistic_name(self._serial_number, self._mprn, True),
         consumption_and_cost["charges"],
         rate_data,
         UnitOfEnergy.KILO_WATT_HOUR,
