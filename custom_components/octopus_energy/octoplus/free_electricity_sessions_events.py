@@ -39,7 +39,7 @@ class OctopusEnergyOctoplusFreeElectricitySessionEvents(OctopusEnergyOctoplusSen
   @property
   def name(self):
     """Name of the sensor."""
-    return "Free Electricity Session Events"
+    return f"Octoplus Free Electricity Session Events ({self._account_id})"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

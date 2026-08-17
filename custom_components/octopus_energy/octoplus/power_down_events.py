@@ -27,4 +27,4 @@ class OctopusEnergyOctoplusPowerDownEvents(OctopusEnergyOctoplusSavingSessionEve
   @property
   def name(self):
     """Name of the sensor."""
-    return "Power Down Events"
+    return f"Octoplus Power Down Events ({self._account_id})"

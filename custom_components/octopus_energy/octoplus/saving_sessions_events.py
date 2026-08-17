@@ -40,7 +40,7 @@ class OctopusEnergyOctoplusSavingSessionEvents(OctopusEnergyOctoplusSensor, Even
   @property
   def name(self):
     """Name of the sensor."""
-    return "Saving Session Events"
+    return f"Octoplus Saving Session Events ({self._account_id})"
 
   async def async_added_to_hass(self):
     """Call when entity about to be added to hass."""

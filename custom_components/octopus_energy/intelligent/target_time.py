@@ -44,7 +44,7 @@ class OctopusEnergyIntelligentTargetTime(CoordinatorEntity, TimeEntity, OctopusE
   @property
   def name(self):
     """Name of the sensor."""
-    return "Target Time"
+    return f"Intelligent Target Time ({self._device.id})"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

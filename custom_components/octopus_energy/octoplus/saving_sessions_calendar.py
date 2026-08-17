@@ -45,7 +45,7 @@ class OctopusEnergySavingSessionsCalendar(OctopusEnergyOctoplusSensor, Coordinat
   @property
   def name(self):
     """Name of the sensor."""
-    return "Saving Sessions"
+    return f"Octoplus Saving Sessions ({self._account_id})"
 
   @property
   def event(self) -> CalendarEvent | None:

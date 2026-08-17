@@ -89,7 +89,7 @@ class OctopusEnergyHeatPumpWaterHeater(CoordinatorEntity, BaseOctopusEnergyHeatP
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Zone ({self._zone.configuration.displayName})"
+    return f"Zone ({self._zone.configuration.displayName}) Heat Pump ({self._heat_pump_id})"
   
   @callback
   def _handle_coordinator_update(self) -> None:

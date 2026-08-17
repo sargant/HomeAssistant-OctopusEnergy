@@ -44,7 +44,7 @@ class OctopusEnergyIntelligentChargeCapHours(CoordinatorEntity, OctopusEnergyInt
   @property
   def name(self):
     """Name of the sensor."""
-    return "Charge Cap Hours"
+    return f"Charge Cap Hours ({self._device.id})"
 
   @property
   def icon(self):

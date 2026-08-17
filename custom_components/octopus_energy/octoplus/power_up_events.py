@@ -26,4 +26,4 @@ class OctopusEnergyOctoplusPowerUpEvents(OctopusEnergyOctoplusFreeElectricitySes
   @property
   def name(self):
     """Name of the sensor."""
-    return "Power Up Events"
+    return f"Octoplus Power Up Events ({self._account_id})"

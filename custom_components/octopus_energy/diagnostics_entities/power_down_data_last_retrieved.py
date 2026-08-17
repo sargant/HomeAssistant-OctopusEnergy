@@ -18,4 +18,4 @@ class OctopusEnergyPowerDownDataLastRetrieved(OctopusEnergyOctoplusSensor, Octop
   @property
   def name(self):
     """Name of the sensor."""
-    return "Power Down Data Last Retrieved"
+    return f"Power Down Data Last Retrieved ({self._account_id})"

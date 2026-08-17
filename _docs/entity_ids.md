@@ -5,9 +5,9 @@ As of v20.0.0, the integration does not set entity IDs. Home Assistant creates t
 Entities attached to a device use Home Assistant's device/entity naming model:
 
 * The device name identifies the meter, account or hardware. Electricity meter device names include the meter serial number and MPAN, for example `Octopus Energy Electricity Meter (ABC123/1234567890123)`. Gas meter device names use the equivalent serial number and MPRN.
-* The entity name identifies only the data point, for example `Current Rate` or `Previous Accumulative Consumption`.
+* The entity name retains its existing descriptive text but no longer repeats the meter serial number and MPAN/MPRN, for example `Current Rate Electricity` or `Previous Accumulative Consumption Gas`.
 
-With a device-and-entity ID format, Home Assistant can therefore create an ID such as `sensor.octopus_energy_electricity_meter_abc123_1234567890123_current_rate`. The exact ID can differ when your Home Assistant entity ID settings include an area or use a different combination of name parts.
+With a device-and-entity ID format, Home Assistant can therefore create an ID such as `sensor.octopus_energy_electricity_meter_abc123_1234567890123_current_rate_electricity`. The exact ID can differ when your Home Assistant entity ID settings include an area or use a different combination of name parts.
 
 ## Existing installations
 

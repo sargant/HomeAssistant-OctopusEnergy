@@ -1,3 +1,4 @@
+import ast
 from pathlib import Path
 
 from homeassistant.helpers.entity import Entity
@@ -48,6 +49,19 @@ def test_integration_does_not_generate_entity_ids():
 
   for path in integration.rglob("*.py"):
     assert "generate_entity_id" not in path.read_text()
+
+
+def test_entity_names_do_not_include_meter_identifiers():
+  integration = Path(__file__).parents[2] / "custom_components" / "octopus_energy"
+
+  for path in integration.rglob("*.py"):
+    source = path.read_text()
+    for node in ast.walk(ast.parse(source)):
+      if isinstance(node, ast.FunctionDef) and node.name == "name":
+        name_source = ast.get_source_segment(source, node)
+        assert "_serial_number" not in name_source
+        assert "_mpan" not in name_source
+        assert "_mprn" not in name_source
 
 
 def test_device_entities_use_home_assistant_entity_naming():

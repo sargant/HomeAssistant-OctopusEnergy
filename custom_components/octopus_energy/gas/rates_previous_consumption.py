@@ -38,7 +38,7 @@ class OctopusEnergyGasPreviousConsumptionRates(OctopusEnergyGasSensor, EventEnti
   @property
   def name(self):
     """Name of the sensor."""
-    return "Previous Consumption Rates"
+    return f"Previous Consumption Rates Gas"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

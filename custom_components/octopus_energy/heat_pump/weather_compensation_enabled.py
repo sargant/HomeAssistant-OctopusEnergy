@@ -43,7 +43,7 @@ class OctopusEnergyHeatPumpWeatherCompensationEnabled(CoordinatorEntity, BaseOct
   @property
   def name(self):
     """Name of the sensor."""
-    return "Weather Compensation Enabled"
+    return f"Weather Compensation Enabled Heat Pump ({self._heat_pump_id})"
 
   @property
   def icon(self):

@@ -38,7 +38,7 @@ class OctopusEnergyElectricityPreviousDayRates(OctopusEnergyElectricitySensor, E
   @property
   def name(self):
     """Name of the sensor."""
-    return "Previous Day Rates"
+    return f"Previous Day Rates {self._export_name_addition}Electricity"
 
   async def async_added_to_hass(self):
     """Call when entity about to be added to hass."""

@@ -20,4 +20,4 @@ class OctopusEnergyIntelligentSettingsDataLastRetrieved(OctopusEnergyIntelligent
   @property
   def name(self):
     """Name of the sensor."""
-    return "Settings Data Last Retrieved"
+    return f"Intelligent Settings Data Last Retrieved ({self._device_id})"

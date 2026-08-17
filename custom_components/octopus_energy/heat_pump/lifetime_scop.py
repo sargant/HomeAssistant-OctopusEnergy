@@ -46,7 +46,7 @@ class OctopusEnergyHeatPumpLifetimeSCoP(CoordinatorEntity, BaseOctopusEnergyHeat
   @property
   def name(self):
     """Name of the sensor."""
-    return "Lifetime SCoP"
+    return f"Lifetime SCoP Heat Pump ({self._heat_pump_id})"
 
   @property
   def state_class(self):

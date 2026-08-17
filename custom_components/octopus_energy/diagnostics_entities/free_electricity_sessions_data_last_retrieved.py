@@ -18,4 +18,4 @@ class OctopusEnergyFreeElectricitySessionsDataLastRetrieved(OctopusEnergyOctoplu
   @property
   def name(self):
     """Name of the sensor."""
-    return "Free Electricity Sessions Data Last Retrieved"
+    return f"Free Electricity Sessions Data Last Retrieved ({self._account_id})"

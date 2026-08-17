@@ -15,4 +15,4 @@ class OctopusEnergyPowerDownBaseline(OctopusEnergySavingSessionBaseline):
   @property
   def name(self):
     """Name of the sensor."""
-    return "Power Down Baseline"
+    return f"Octoplus Power Down Baseline {self._export_name_addition}Electricity"

@@ -44,7 +44,7 @@ class OctopusEnergyIntelligentBumpCharge(CoordinatorEntity, SwitchEntity, Octopu
   @property
   def name(self):
     """Name of the sensor."""
-    return "Bump Charge"
+    return f"Intelligent Bump Charge ({self._device.id})"
 
   @property
   def icon(self):

@@ -47,7 +47,7 @@ class OctopusEnergyIntelligentTargetTimeSelect(CoordinatorEntity, SelectEntity, 
   @property
   def name(self):
     """Name of the sensor."""
-    return "Target Time"
+    return f"Intelligent Target Time ({self._device.id})"
 
   @property
   def icon(self):

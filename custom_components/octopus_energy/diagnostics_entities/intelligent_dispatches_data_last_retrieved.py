@@ -28,7 +28,7 @@ class OctopusEnergyIntelligentDispatchesDataLastRetrieved(OctopusEnergyIntellige
   @property
   def name(self):
     """Name of the sensor."""
-    return "Dispatches Data Last Retrieved"
+    return f"Intelligent Dispatches Data Last Retrieved ({self._device_id})"
   
   @callback
   def _handle_coordinator_update(self) -> None:

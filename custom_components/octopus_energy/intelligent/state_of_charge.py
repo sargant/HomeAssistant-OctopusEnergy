@@ -42,7 +42,7 @@ class OctopusEnergyIntelligentStateOfCharge(CoordinatorEntity, OctopusEnergyInte
   @property
   def name(self):
     """Name of the sensor."""
-    return "State of Charge"
+    return f"State of Charge ({self._device.id})"
 
   @property
   def icon(self):
