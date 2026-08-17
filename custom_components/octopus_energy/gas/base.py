@@ -26,7 +26,7 @@ class OctopusEnergyGasSensor:
 
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"gas_{self._serial_number}_{self._mprn}")},
-      name=f"Gas Meter ({self._mprn}/{self._serial_number})",
+      name=f"Octopus Energy Gas Meter ({self._serial_number}/{self._mprn})",
       connections=set(),
       manufacturer=self._meter["manufacturer"],
       model=self._meter["model"],
