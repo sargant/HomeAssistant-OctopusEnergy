@@ -12,8 +12,11 @@ from homeassistant.helpers import device_registry, entity_registry
 from homeassistant.helpers.entity_platform import EntityPlatform
 
 from custom_components.octopus_energy.const import DOMAIN
-from custom_components.octopus_energy.diagnostics_entities.electricity_rates_data_last_retrieved import (
-  OctopusEnergyElectricityCurrentRatesDataLastRetrieved,
+from custom_components.octopus_energy.diagnostics_entities.electricity_previous_consumption_and_rates_data_last_retrieved import (
+  OctopusEnergyElectricityPreviousConsumptionAndRatesDataLastRetrieved,
+)
+from custom_components.octopus_energy.electricity.current_accumulative_consumption import (
+  OctopusEnergyCurrentAccumulativeElectricityConsumption,
 )
 from custom_components.octopus_energy.electricity.current_rate import (
   OctopusEnergyElectricityCurrentRate,
@@ -21,7 +24,16 @@ from custom_components.octopus_energy.electricity.current_rate import (
 from custom_components.octopus_energy.electricity.off_peak import (
   OctopusEnergyElectricityOffPeak,
 )
+from custom_components.octopus_energy.electricity.previous_accumulative_cost_override import (
+  OctopusEnergyPreviousAccumulativeElectricityCostOverride,
+)
+from custom_components.octopus_energy.gas.current_accumulative_consumption_kwh import (
+  OctopusEnergyCurrentAccumulativeGasConsumptionKwh,
+)
 from custom_components.octopus_energy.gas.current_rate import OctopusEnergyGasCurrentRate
+from custom_components.octopus_energy.gas.current_total_consumption_kwh import (
+  OctopusEnergyCurrentTotalGasConsumptionKwh,
+)
 from custom_components.octopus_energy.octoplus.power_down_baseline import (
   OctopusEnergyPowerDownBaseline,
 )
@@ -177,7 +189,7 @@ async def test_existing_registry_entity_id_is_preserved(hass):
   assert entity.entity_id == existing.entity_id
 
 
-async def test_export_variant_round_trips_legacy_entity_id(hass):
+async def test_export_variant_preserves_human_name_order(hass):
   entry = create_config_entry(hass)
   entity = OctopusEnergyElectricityOffPeak(
     hass,
@@ -190,17 +202,17 @@ async def test_export_variant_round_trips_legacy_entity_id(hass):
 
   assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_export_off_peak"
   assert entity.has_entity_name is True
-  assert entity.name == "Export Off Peak"
-  assert entity.entity_id == f"binary_sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_export_off_peak"
+  assert entity.name == "Off Peak Export"
+  assert entity.entity_id == f"binary_sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_off_peak_export"
 
   registry_entry = entity_registry.async_get(hass).async_get(entity.entity_id)
   device = device_registry.async_get(hass).async_get(registry_entry.device_id)
   assert device.name == f"Octopus Energy Electricity ({ELECTRICITY_SERIAL}/{MPAN})"
 
 
-async def test_meter_diagnostic_round_trips_legacy_entity_id(hass):
+async def test_meter_diagnostic_uses_preserved_human_name(hass):
   entry = create_config_entry(hass)
-  entity = OctopusEnergyElectricityCurrentRatesDataLastRetrieved(
+  entity = OctopusEnergyElectricityPreviousConsumptionAndRatesDataLastRetrieved(
     hass,
     create_coordinator(),
     electricity_meter(),
@@ -209,14 +221,59 @@ async def test_meter_diagnostic_round_trips_legacy_entity_id(hass):
 
   await create_platform(hass, entry).async_add_entities([entity])
 
-  assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_rates_data_last_retrieved"
+  assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_previous_consumption_rates_data_last_retrieved"
   assert entity.has_entity_name is True
-  assert entity.name == "Rates Data Last Retrieved"
-  assert entity.entity_id == f"sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_rates_data_last_retrieved"
+  assert entity.name == "Previous Consumption and Rates Data Last Retrieved"
+  assert entity.entity_id == f"sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_previous_consumption_and_rates_data_last_retrieved"
 
   registry_entry = entity_registry.async_get(hass).async_get(entity.entity_id)
   device = device_registry.async_get(hass).async_get(registry_entry.device_id)
   assert device.name == f"Octopus Energy Electricity ({ELECTRICITY_SERIAL}/{MPAN})"
+
+
+async def test_meter_entity_names_remove_only_device_context(hass):
+  electricity_point = {"mpan": MPAN}
+  gas_point = {"mprn": MPRN}
+
+  peak_consumption = OctopusEnergyCurrentAccumulativeElectricityConsumption(
+    hass,
+    create_coordinator(),
+    create_coordinator(),
+    create_coordinator(),
+    electricity_meter(),
+    electricity_point,
+    "off_peak",
+  )
+  tariff_cost = OctopusEnergyPreviousAccumulativeElectricityCostOverride(
+    hass,
+    "A-TEST",
+    create_coordinator(),
+    Mock(),
+    electricity_meter(),
+    electricity_point,
+    {"name": "Agile"},
+  )
+  gas_consumption = OctopusEnergyCurrentAccumulativeGasConsumptionKwh(
+    hass,
+    create_coordinator(),
+    create_coordinator(),
+    create_coordinator(),
+    gas_meter(),
+    gas_point,
+    40,
+  )
+  gas_total = OctopusEnergyCurrentTotalGasConsumptionKwh(
+    hass,
+    create_coordinator(),
+    gas_meter(),
+    gas_point,
+    40,
+  )
+
+  assert peak_consumption.name == "Off Peak Current Accumulative Consumption"
+  assert tariff_cost.name == "Agile Previous Accumulative Cost Override"
+  assert gas_consumption.name == "Current Accumulative Consumption"
+  assert gas_total.name == "Current Total Consumption (kWh)"
 
 
 async def test_octoplus_baseline_keeps_legacy_entity_id(hass):

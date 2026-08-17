@@ -2,7 +2,7 @@
 
 You'll get the following entities for each gas meter with an active agreement:
 
-The entity IDs below are reproduced when Home Assistant uses the `Device Entity` naming scheme. See [Entity IDs and names](../entity_ids.md) for further details.
+The entity IDs below are historical examples retained by existing installations. New and recreated IDs use Home Assistant's configured naming scheme and may differ. See [Entity IDs and names](../entity_ids.md) for further details.
 
 ## Current Rate
 
