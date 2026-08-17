@@ -37,11 +37,11 @@ def test_meter_entities_defer_entity_id_generation_to_home_assistant():
 
   assert electricity.entity_id is None
   assert electricity.has_entity_name is True
-  assert electricity.device_info["name"] == "Octopus Energy Electricity Meter (serial/mpan)"
+  assert electricity.device_info["name"] == "Octopus Energy Electricity (serial/mpan)"
 
   assert gas.entity_id is None
   assert gas.has_entity_name is True
-  assert gas.device_info["name"] == "Octopus Energy Gas Meter (serial/mprn)"
+  assert gas.device_info["name"] == "Octopus Energy Gas (serial/mprn)"
 
 
 def test_integration_does_not_generate_entity_ids():
