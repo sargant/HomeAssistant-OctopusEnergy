@@ -9,7 +9,7 @@ class OctopusEnergyGasPreviousConsumptionAndRatesDataLastRetrieved(OctopusEnergy
     self._mprn = point["mprn"]
     self._serial_number = meter["serial_number"]
     OctopusEnergyGasSensor.__init__(self, hass, meter, point)
-    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator)
+    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator, generate_legacy_entity_id=False)
 
   @property
   def unique_id(self):

@@ -27,7 +27,7 @@ class OctopusEnergyBaseDataLastRetrieved(CoordinatorEntity, RestoreSensor):
   """Base sensor for data last retrieved."""
   _unrecorded_attributes = frozenset({ "attempts", "next_refresh" })
 
-  def __init__(self, hass, coordinator, generate_legacy_entity_id = False):
+  def __init__(self, hass, coordinator, generate_legacy_entity_id = True):
     """Init sensor."""
     CoordinatorEntity.__init__(self, coordinator)
     self._state = None

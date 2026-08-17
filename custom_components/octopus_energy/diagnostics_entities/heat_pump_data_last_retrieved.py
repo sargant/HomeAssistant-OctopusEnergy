@@ -10,7 +10,7 @@ class OctopusEnergyHeatPumpDataLastRetrieved(BaseOctopusEnergyHeatPumpSensor, Oc
     self._account_id = account_id
     self._heat_pump_id = heat_pump_id
     BaseOctopusEnergyHeatPumpSensor.__init__(self, hass, heat_pump_id, heat_pump)
-    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator, generate_legacy_entity_id=True)
+    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator)
 
   @property
   def unique_id(self):
