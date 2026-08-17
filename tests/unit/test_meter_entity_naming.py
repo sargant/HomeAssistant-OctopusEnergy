@@ -12,6 +12,9 @@ from homeassistant.helpers import device_registry, entity_registry
 from homeassistant.helpers.entity_platform import EntityPlatform
 
 from custom_components.octopus_energy.const import DOMAIN
+from custom_components.octopus_energy.diagnostics_entities.electricity_rates_data_last_retrieved import (
+  OctopusEnergyElectricityCurrentRatesDataLastRetrieved,
+)
 from custom_components.octopus_energy.electricity.current_rate import (
   OctopusEnergyElectricityCurrentRate,
 )
@@ -19,6 +22,9 @@ from custom_components.octopus_energy.electricity.off_peak import (
   OctopusEnergyElectricityOffPeak,
 )
 from custom_components.octopus_energy.gas.current_rate import OctopusEnergyGasCurrentRate
+from custom_components.octopus_energy.octoplus.power_down_baseline import (
+  OctopusEnergyPowerDownBaseline,
+)
 
 
 pytestmark = pytest.mark.asyncio
@@ -190,3 +196,39 @@ async def test_export_variant_round_trips_legacy_entity_id(hass):
   registry_entry = entity_registry.async_get(hass).async_get(entity.entity_id)
   device = device_registry.async_get(hass).async_get(registry_entry.device_id)
   assert device.name == f"Octopus Energy Electricity ({ELECTRICITY_SERIAL}/{MPAN})"
+
+
+async def test_meter_diagnostic_round_trips_legacy_entity_id(hass):
+  entry = create_config_entry(hass)
+  entity = OctopusEnergyElectricityCurrentRatesDataLastRetrieved(
+    hass,
+    create_coordinator(),
+    electricity_meter(),
+    {"mpan": MPAN},
+  )
+
+  await create_platform(hass, entry).async_add_entities([entity])
+
+  assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_rates_data_last_retrieved"
+  assert entity.has_entity_name is True
+  assert entity.name == "Rates Data Last Retrieved"
+  assert entity.entity_id == f"sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_rates_data_last_retrieved"
+
+  registry_entry = entity_registry.async_get(hass).async_get(entity.entity_id)
+  device = device_registry.async_get(hass).async_get(registry_entry.device_id)
+  assert device.name == f"Octopus Energy Electricity ({ELECTRICITY_SERIAL}/{MPAN})"
+
+
+async def test_octoplus_baseline_keeps_legacy_entity_id(hass):
+  entity = OctopusEnergyPowerDownBaseline(
+    hass,
+    create_coordinator(),
+    create_coordinator(),
+    electricity_meter(),
+    {"mpan": MPAN},
+    False,
+  )
+
+  assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_octoplus_power_down_baseline"
+  assert entity.has_entity_name is False
+  assert entity.entity_id == f"sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_octoplus_power_down_baseline"

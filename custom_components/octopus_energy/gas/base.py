@@ -1,6 +1,6 @@
 from homeassistant.core import HomeAssistant
 
-from homeassistant.helpers.entity import DeviceInfo
+from homeassistant.helpers.entity import generate_entity_id, DeviceInfo
 
 from ..const import (
   DOMAIN,
@@ -8,9 +8,8 @@ from ..const import (
 
 class OctopusEnergyGasSensor:
   _unrecorded_attributes = frozenset({"data_last_retrieved"})
-  _attr_has_entity_name = True
 
-  def __init__(self, hass: HomeAssistant, meter, point, entity_domain = "sensor"):
+  def __init__(self, hass: HomeAssistant, meter, point, entity_domain = "sensor", generate_legacy_entity_id = False):
     """Init sensor"""
     self._point = point
     self._meter = meter
@@ -23,6 +22,10 @@ class OctopusEnergyGasSensor:
       "mprn": self._mprn,
       "serial_number": self._serial_number
     }
+
+    self._attr_has_entity_name = generate_legacy_entity_id == False
+    if generate_legacy_entity_id:
+      self.entity_id = generate_entity_id(entity_domain + ".{}", self.unique_id, hass=hass)
 
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"gas_{self._serial_number}_{self._mprn}")},

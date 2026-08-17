@@ -34,6 +34,7 @@ class OctopusEnergyBaseDataLastRetrieved(CoordinatorEntity, RestoreSensor):
     self._attributes = {}
 
     if generate_legacy_entity_id:
+      self._attr_has_entity_name = False
       self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
     else:
       self._attr_has_entity_name = True
