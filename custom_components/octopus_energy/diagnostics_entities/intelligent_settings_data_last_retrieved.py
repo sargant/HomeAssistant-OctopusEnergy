@@ -9,7 +9,7 @@ class OctopusEnergyIntelligentSettingsDataLastRetrieved(OctopusEnergyIntelligent
     """Init sensor."""
     self._account_id = account_id
     self._device_id = device.id
-    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator)
+    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator, generate_legacy_entity_id=True)
     OctopusEnergyIntelligentSensor.__init__(self, device)
 
   @property

@@ -8,7 +8,7 @@ class OctopusEnergyFreeElectricitySessionsDataLastRetrieved(OctopusEnergyOctoplu
     """Init sensor."""
     self._account_id = account_id
     OctopusEnergyOctoplusSensor.__init__(self, account_id)
-    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator)
+    OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator, generate_legacy_entity_id=True)
 
   @property
   def unique_id(self):
