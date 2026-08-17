@@ -6,7 +6,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 
 from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity
@@ -36,8 +35,6 @@ class OctopusEnergyIntelligentChargeTarget(CoordinatorEntity, RestoreNumber, Oct
     self._account_id = account_id
     self._attributes = {}
     self._is_mocked = is_mocked
-    self.entity_id = generate_entity_id("number.{}", self.unique_id, hass=hass)
-
     self._attr_native_min_value = 5
     self._attr_native_max_value = 100
     self._attr_native_step = 1
@@ -51,7 +48,7 @@ class OctopusEnergyIntelligentChargeTarget(CoordinatorEntity, RestoreNumber, Oct
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Intelligent Charge Target ({self._device.id})"
+    return "Charge Target"
 
   @property
   def icon(self):

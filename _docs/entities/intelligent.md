@@ -2,6 +2,10 @@
 
 If you are on the [intelligent tariff](https://octopus.energy/smart/intelligent-octopus/), then you'll get the following entities.
 
+!!! info
+
+    The entity IDs below are legacy examples. Home Assistant now generates entity IDs using your configured format. See [Entity IDs and names](../entity_ids.md).
+
 !!! warning
 
     If you switch to the intelligent tariff after you have installed the integration, you will need to reload the integration or restart your Home Assistant instance. You will also need to do this if you re-onboard.

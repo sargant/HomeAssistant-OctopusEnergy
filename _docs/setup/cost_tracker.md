@@ -4,6 +4,10 @@ Ever wondered how much your individual appliances are costing you? You can creat
 
 !!! info
 
+    Example entity IDs on this page use the legacy format. Select entities by name in Home Assistant, or see [Entity IDs and names](../entity_ids.md) for details of generated IDs.
+
+!!! info
+
     The cost is only calculated when the monitored sensor changes. Therefore the accuracy of the cost tracker sensors is dependent on the frequency the monitored entity updates.
 
 ## Setup

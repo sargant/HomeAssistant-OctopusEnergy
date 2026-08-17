@@ -77,7 +77,7 @@ class OctopusEnergyFreeElectricitySessionBaseline(MultiCoordinatorEntity, Octopu
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Free Electricity Session Baseline {self._export_name_addition}Electricity ({self._serial_number}/{self._mpan})"
+    return "Free Electricity Session Baseline"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

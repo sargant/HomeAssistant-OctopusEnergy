@@ -5,7 +5,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (utcnow)
 from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity,
@@ -34,8 +33,6 @@ class OctopusEnergyWheelOfFortuneGasSpins(CoordinatorEntity, RestoreSensor):
     self._client = client
     self._state = None
     self._attributes = {}
-
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):

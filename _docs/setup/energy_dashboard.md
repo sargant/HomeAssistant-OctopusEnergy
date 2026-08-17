@@ -1,5 +1,9 @@
 # Energy Dashboard
 
+!!! info
+
+    The entity IDs below are legacy examples. Select entities by name in Home Assistant, or see [Entity IDs and names](../entity_ids.md) for details of generated IDs.
+
 ## Current Consumption
 
 ### For Electricity

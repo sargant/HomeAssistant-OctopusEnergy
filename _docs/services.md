@@ -2,6 +2,10 @@
 
 There are a few services available within this integration, which are detailed here.
 
+!!! info
+
+    Example entity IDs on this page use the legacy format. Select the target entity in Home Assistant rather than assuming its ID. See [Entity IDs and names](./entity_ids.md).
+
 ## Octoplus
 
 The following services are available if your account is enrolled into [Octoplus](./entities/octoplus.md).

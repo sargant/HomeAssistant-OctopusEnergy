@@ -19,4 +19,4 @@ class OctopusEnergyGasCurrentRatesDataLastRetrieved(OctopusEnergyGasSensor, Octo
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Rates Data Last Retrieved Gas ({self._serial_number}/{self._mprn})"
+    return "Rates Data Last Retrieved"

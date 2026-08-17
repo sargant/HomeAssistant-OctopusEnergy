@@ -2,6 +2,10 @@
 
 These are a few contributions by the community.
 
+!!! info
+
+    Community examples may use legacy Octopus Energy entity IDs. Replace them with the IDs from your installation. See [Entity IDs and names](./entity_ids.md).
+
 ## Agile Price Table
 
 If you're wanting to display upcoming prices in a nice readable format, then you can utilise the [Octopus Energy Rates card](https://github.com/lozzd/octopus-energy-rates-card) developed by [@lozzd](https://github.com/lozzd).

@@ -2,6 +2,10 @@
 
 These entities can help diagnose issues.
 
+!!! info
+
+    The entity IDs below are legacy examples. Home Assistant now generates entity IDs using your configured format. See [Entity IDs and names](../entity_ids.md).
+
 ## Account Data Last Retrieved
 
 `sensor.octopus_energy_{{ACCOUNT_ID}}_account_data_last_retrieved`

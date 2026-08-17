@@ -46,7 +46,7 @@ class OctopusEnergyHeatPumpWeatherCompensationMinimumTemperature(CoordinatorEnti
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Weather Compensation Minimum Temperature Heat Pump ({self._heat_pump_id})"
+    return "Weather Compensation Minimum Temperature"
 
   @property
   def state_class(self):

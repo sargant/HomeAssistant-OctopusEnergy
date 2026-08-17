@@ -8,7 +8,6 @@ from homeassistant.const import (
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ServiceValidationError
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (utcnow)
 
 from homeassistant.components.sensor import (
@@ -41,8 +40,6 @@ class OctopusEnergyOctoplusPoints(OctopusEnergyOctoplusSensor, RestoreSensor):
     self._request_attempts = 1
     self._attributes = {}
 
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
-
   @property
   def unique_id(self):
     """The id of the sensor."""
@@ -51,7 +48,7 @@ class OctopusEnergyOctoplusPoints(OctopusEnergyOctoplusSensor, RestoreSensor):
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Points ({self._account_id})"
+    return "Points"
 
   @property
   def icon(self):

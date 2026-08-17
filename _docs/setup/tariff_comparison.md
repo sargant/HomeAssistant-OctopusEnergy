@@ -2,6 +2,10 @@
 
 There will probably be times when you'll want to know if you're on the right tariff for you financially.
 
+!!! info
+
+    Example entity IDs on this page use the legacy format. Select entities by name in Home Assistant, or see [Entity IDs and names](../entity_ids.md) for details of generated IDs.
+
 The tariff comparison allows you to elect a new tariff which will generate some additional sensors which will show the cost of your elected meter against that tariff.
 
 After you've configured your [account](./account.md), you'll be able to configure tariff comparison sensors. These are configured by adding subsequent instances of the integration going through the [normal flow](https://my.home-assistant.io/redirect/config_flow_start/?domain=octopus_energy), and selecting `Tariff Comparison` in the provided menu.

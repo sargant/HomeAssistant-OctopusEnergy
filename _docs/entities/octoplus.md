@@ -2,6 +2,10 @@
 
 To support Octopus Energy's [octoplus programme](https://octopus.energy/octoplus/), the following entities are available
 
+!!! info
+
+    The entity IDs below are legacy examples. Home Assistant now generates entity IDs using your configured format. See [Entity IDs and names](../entity_ids.md).
+
 ## Octoplus Points
 
 `sensor.octopus_energy_{{ACCOUNT_ID}}_octoplus_points`
@@ -517,4 +521,3 @@ Each item within `baselines` consists of the following attributes
 ## Services
 
 There are some services available relating to these entities that you might find useful. They can be found in the [services docs](../services.md#octoplus).
-

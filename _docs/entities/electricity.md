@@ -2,6 +2,10 @@
 
 You'll get the following entities for each electricity meter with an active agreement.
 
+!!! info
+
+    The entity IDs below are legacy examples. Home Assistant now generates entity IDs using your configured format. See [Entity IDs and names](../entity_ids.md).
+
 ## Current Rate
 
 `sensor.octopus_energy_electricity_{{METER_SERIAL_NUMBER}}_{{MPAN_NUMBER}}_current_rate`

@@ -46,7 +46,7 @@ class OctopusEnergyHeatPumpFixedTargetFlowTemperature(CoordinatorEntity, BaseOct
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Fixed Target Flow Temperature Heat Pump ({self._heat_pump_id})"
+    return "Fixed Target Flow Temperature"
 
   @property
   def state_class(self):

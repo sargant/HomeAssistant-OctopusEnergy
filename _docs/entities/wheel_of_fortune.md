@@ -2,6 +2,10 @@
 
 To support the wheel of fortune that is awarded every month to customers.
 
+!!! info
+
+    The entity IDs below are legacy examples. Home Assistant now generates entity IDs using your configured format. See [Entity IDs and names](../entity_ids.md).
+
 ## Electricity Spins
 
 `sensor.octopus_energy_{{ACCOUNT_ID}}_wheel_of_fortune_spins_electricity`

@@ -19,4 +19,4 @@ class OctopusEnergyElectricityCurrentStandingChargeDataLastRetrieved(OctopusEner
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Standing Charge Data Last Retrieved Electricity ({self._serial_number}/{self._mpan})"
+    return "Standing Charge Data Last Retrieved"

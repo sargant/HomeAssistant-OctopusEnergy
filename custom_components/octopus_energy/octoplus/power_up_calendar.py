@@ -15,4 +15,4 @@ class OctopusEnergyPowerUpCalendar(OctopusEnergyFreeElectricitySessionsCalendar)
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Power Up ({self._account_id})"
+    return "Power Up"

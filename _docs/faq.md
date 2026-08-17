@@ -122,17 +122,11 @@ If your Home Mini is reporting data on the OE website, then please raise an [iss
 
 ## Why are the names of the entities so long, and can you change them to be shorter?
 
-Naming things are hard. The entity ids are long for the following reasons
+The integration no longer sets entity IDs directly. Home Assistant generates them from the device and entity naming hierarchy, using your configured entity ID format.
 
-* The domain is present as I didn't want to potentially clash with other integrations that provide similar sensors for meters, as a lot of people in the community use things like the glow device to get their readings. Hindsight, I probably wouldn't include this, but we're here now.
+Meter device names include the MPAN/MPRN and serial number by default so that multiple meters remain distinguishable. Entity names contain only the data point, such as `Current Rate`. You can rename the device and use Home Assistant's **Recreate entity IDs** action if you want shorter IDs. Existing entity IDs are left unchanged during upgrades.
 
-* The serial number and mpan/mprn is present because the data that comes back from OE is in an array of arrays. I am only on an import tariff, so couldn't guarantee that any of these were unique and didn't want to assume anything. Turns out one of these is duplicated between import/export meters so if I had picked one of these I would have been wrong and had a clash.
-
-* The account id is present in other sensors in order to support multiple accounts (which the serial number/mpan/mprn also play apart in).
-
-The names of the entities are equally long for consistency with the entity id and so that you can tell one entity apart from another in the above scenarios.
-
-However you are free to update the names and/or ids to something more concise for you as per the [Home Assistant docs](https://www.home-assistant.io/docs/configuration/customizing-devices/#changing-the-entity-id).
+See [Entity IDs and names](./entity_ids.md) for the full behaviour and upgrade guidance.
 
 ## I am getting warnings about entities taking too long to update. Is this normal?
 

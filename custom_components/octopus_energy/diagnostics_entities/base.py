@@ -15,7 +15,6 @@ from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity
 )
 
-from homeassistant.helpers.entity import generate_entity_id
 
 from ..coordinators import BaseCoordinatorResult
 from ..utils.attributes import dict_to_typed_dict
@@ -32,8 +31,6 @@ class OctopusEnergyBaseDataLastRetrieved(CoordinatorEntity, RestoreSensor):
     CoordinatorEntity.__init__(self, coordinator)
     self._state = None
     self._attributes = {}
-
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
 
   @property
   def entity_registry_enabled_default(self) -> bool:

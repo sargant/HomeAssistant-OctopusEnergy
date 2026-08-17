@@ -5,7 +5,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 
 from homeassistant.util.dt import (now)
 from homeassistant.helpers.update_coordinator import (
@@ -37,8 +36,6 @@ class OctopusEnergyIntelligentChargeCapHours(CoordinatorEntity, OctopusEnergyInt
     self._state = None
     self._attributes = {}
 
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
-
   @property
   def unique_id(self):
     """The id of the sensor."""
@@ -47,7 +44,7 @@ class OctopusEnergyIntelligentChargeCapHours(CoordinatorEntity, OctopusEnergyInt
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Charge Cap Hours ({self._device.id})"
+    return "Charge Cap Hours"
 
   @property
   def icon(self):

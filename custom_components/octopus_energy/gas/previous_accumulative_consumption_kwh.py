@@ -61,7 +61,7 @@ class OctopusEnergyPreviousAccumulativeGasConsumptionKwh(CoordinatorEntity, Octo
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Previous Accumulative Consumption (kWh) Gas ({self._serial_number}/{self._mprn})"
+    return "Previous Accumulative Consumption (kWh)"
 
   @property
   def device_class(self):

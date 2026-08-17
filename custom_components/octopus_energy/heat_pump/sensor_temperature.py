@@ -46,7 +46,7 @@ class OctopusEnergyHeatPumpSensorTemperature(CoordinatorEntity, BaseOctopusEnerg
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Temperature ({self._sensor.displayName}) Heat Pump ({self._heat_pump_id})"
+    return f"Temperature ({self._sensor.displayName})"
 
   @property
   def state_class(self):

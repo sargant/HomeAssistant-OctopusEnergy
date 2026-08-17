@@ -43,7 +43,7 @@ class OctopusEnergyHeatPumpLiveCoP(CoordinatorEntity, BaseOctopusEnergyHeatPumpS
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Live CoP Heat Pump ({self._heat_pump_id})"
+    return "Live CoP"
 
   @property
   def state_class(self):
