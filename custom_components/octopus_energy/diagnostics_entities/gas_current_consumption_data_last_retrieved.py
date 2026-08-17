@@ -1,7 +1,7 @@
 from .base import OctopusEnergyBaseDataLastRetrieved
 from ..gas.base import OctopusEnergyGasSensor
 
-class OctopusEnergyGasCurrentConsumptionDataLastRetrieved(OctopusEnergyBaseDataLastRetrieved, OctopusEnergyGasSensor):
+class OctopusEnergyGasCurrentConsumptionDataLastRetrieved(OctopusEnergyGasSensor, OctopusEnergyBaseDataLastRetrieved):
   """Sensor for displaying the last time the current consumption data was last retrieved."""
 
   def __init__(self, hass, coordinator, meter, point):
