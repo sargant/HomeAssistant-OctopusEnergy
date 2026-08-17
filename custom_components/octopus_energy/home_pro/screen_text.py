@@ -6,6 +6,7 @@ from homeassistant.components.text import TextEntity
 
 from homeassistant.helpers.restore_state import RestoreEntity
 
+from homeassistant.helpers.entity import generate_entity_id
 
 from ..api_client_home_pro import OctopusEnergyHomeProApiClient
 
@@ -22,6 +23,8 @@ class OctopusEnergyHomeProScreenText(TextEntity, RestoreEntity):
     self._client = client
     self._account_id = account_id
     self._attr_native_value = None
+
+    self.entity_id = generate_entity_id("text.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):

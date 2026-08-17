@@ -3,7 +3,7 @@ import logging
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.exceptions import ServiceValidationError
-from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (now)
 
 from homeassistant.components.sensor import (
@@ -40,7 +40,7 @@ _LOGGER = logging.getLogger(__name__)
 class OctopusEnergyCostTrackerMonthSensor(RestoreSensor, BaseCostTracker):
   """Sensor for calculating the cost for a given sensor over the course of a month."""
 
-  def __init__(self, hass: HomeAssistant, config_entry, config, device_entry, tracked_entity_unique_id: str, peak_type = None):
+  def __init__(self, hass: HomeAssistant, config_entry, config, device_entry, tracked_entity_id: str, peak_type = None):
     """Init sensor."""
     # Pass coordinator to base class
 
@@ -50,11 +50,13 @@ class OctopusEnergyCostTrackerMonthSensor(RestoreSensor, BaseCostTracker):
     self._attributes["total_consumption"] = 0
     self._attributes["accumulated_data"] = []
     self._last_reset = None
-    self._tracked_entity_unique_id = tracked_entity_unique_id
+    self._tracked_entity_id = tracked_entity_id
     self._config_entry = config_entry
     self._peak_type = peak_type
     
     self._hass = hass
+    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
+
     BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID])
 
   @property
@@ -126,13 +128,6 @@ class OctopusEnergyCostTrackerMonthSensor(RestoreSensor, BaseCostTracker):
     """Call when entity about to be added to hass."""
     # If not None, we got an initial value.
     await super().async_added_to_hass()
-    self._tracked_entity_id = er.async_get(self.hass).async_get_entity_id(
-      "sensor", DOMAIN, self._tracked_entity_unique_id
-    )
-    if self._tracked_entity_id is None:
-      _LOGGER.error(f"Could not find tracked entity with unique ID '{self._tracked_entity_unique_id}'")
-      return
-
     state = await self.async_get_last_state()
     last_sensor_state = await self.async_get_last_sensor_data()
     

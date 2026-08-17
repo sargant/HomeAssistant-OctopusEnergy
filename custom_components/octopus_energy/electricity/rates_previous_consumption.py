@@ -38,7 +38,7 @@ class OctopusEnergyElectricityPreviousConsumptionRates(OctopusEnergyElectricityS
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Previous Consumption Rates {self._export_name_addition}Electricity"
+    return f"{self._export_name_addition}Previous Consumption Rates"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

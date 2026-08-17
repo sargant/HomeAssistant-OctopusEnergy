@@ -65,9 +65,9 @@ class OctopusEnergyPreviousAccumulativeElectricityCost(CoordinatorEntity, Octopu
   @property
   def name(self):
     """Name of the sensor."""
-    base_id = f"Previous Accumulative Cost {self._export_name_addition}Electricity"
+    base_id = f"{self._export_name_addition}Previous Accumulative Cost"
     if self._peak_type is not None:
-      return f"{base_id} ({get_peak_name(self._peak_type)})"
+      return f"{base_id} {get_peak_name(self._peak_type)}"
     
     return base_id
 

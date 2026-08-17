@@ -6,7 +6,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-
 from homeassistant.util.dt import (now)
 from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity
@@ -49,7 +48,7 @@ class OctopusEnergyElectricityOffPeak(CoordinatorEntity, OctopusEnergyElectricit
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Off Peak {self._export_name_addition}Electricity"
+    return f"{self._export_name_addition}Off Peak"
 
   @property
   def icon(self):

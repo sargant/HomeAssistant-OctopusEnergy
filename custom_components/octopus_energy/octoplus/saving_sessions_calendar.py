@@ -2,6 +2,7 @@ from datetime import datetime
 import logging
 
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (utcnow)
 
 from homeassistant.helpers.update_coordinator import (
@@ -36,6 +37,8 @@ class OctopusEnergySavingSessionsCalendar(OctopusEnergyOctoplusSensor, Coordinat
     self._account_id = account_id
     self._event = None
     self._events = []
+
+    self.entity_id = generate_entity_id("calendar.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):

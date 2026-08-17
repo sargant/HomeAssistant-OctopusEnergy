@@ -1,6 +1,6 @@
 from homeassistant.core import HomeAssistant
 
-from homeassistant.helpers.entity import DeviceInfo
+from homeassistant.helpers.entity import generate_entity_id, DeviceInfo
 
 from ..const import (
   DOMAIN,
@@ -9,7 +9,6 @@ from ..api_client.heat_pump import HeatPump, SensorConfiguration
 
 class BaseOctopusEnergyHeatPumpSensor:
   _unrecorded_attributes = frozenset({"data_last_retrieved"})
-  _attr_has_entity_name = True
 
   def __init__(self, hass: HomeAssistant, heat_pump_id: str, heat_pump: HeatPump, entity_domain = "sensor"):
     """Init sensor"""
@@ -18,6 +17,8 @@ class BaseOctopusEnergyHeatPumpSensor:
 
     self._attributes = {
     }
+
+    self.entity_id = generate_entity_id(entity_domain + ".{}", self.unique_id, hass=hass)
 
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"heat_pump_{heat_pump.serialNumber}")},
@@ -41,6 +42,8 @@ class BaseOctopusEnergyHeatPumpSensorSensor(BaseOctopusEnergyHeatPumpSensor):
       "type": sensor.type,
       "code": sensor.code
     }
+
+    self.entity_id = generate_entity_id(entity_domain + ".{}", self.unique_id, hass=hass)
 
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"heat_pump_sensor_{heat_pump.serialNumber}_{sensor.code}")},

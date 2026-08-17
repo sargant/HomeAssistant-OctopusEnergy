@@ -3,6 +3,7 @@ import logging
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.exceptions import ServiceValidationError
+from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (now, parse_datetime, as_local)
 
 from homeassistant.helpers.update_coordinator import (
@@ -66,6 +67,8 @@ class OctopusEnergyCostTrackerSensor(CoordinatorEntity, RestoreSensor, BaseCostT
     self._peak_type = peak_type
     
     self._hass = hass
+    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
+
     BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID])
 
   @property

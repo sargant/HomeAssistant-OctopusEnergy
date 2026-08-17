@@ -64,9 +64,9 @@ class OctopusEnergyCurrentAccumulativeElectricityCost(MultiCoordinatorEntity, Oc
   @property
   def name(self):
     """Name of the sensor."""
-    base_name = f"Current Accumulative Cost {self._export_name_addition}Electricity"
+    base_name = f"{self._export_name_addition}Current Accumulative Cost"
     if self._peak_type is not None:
-      return f"{get_peak_name(self._peak_type)} {base_name}"
+      return f"{base_name} {get_peak_name(self._peak_type)}"
 
     return base_name
 

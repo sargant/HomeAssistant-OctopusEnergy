@@ -9,7 +9,6 @@ from ..intelligent import device_type_to_friendly_string
 class OctopusEnergyIntelligentSensor:
   
   _unrecorded_attributes = frozenset({"data_last_retrieved"})
-  _attr_has_entity_name = True
   
   def __init__(self, device: IntelligentDevice):
     """Init sensor"""

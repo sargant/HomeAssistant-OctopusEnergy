@@ -7,7 +7,6 @@ from ..const import (
 class OctopusEnergyOctoplusSensor:
   
   _unrecorded_attributes = frozenset({"data_last_retrieved"})
-  _attr_has_entity_name = True
   
   def __init__(self, account_id: str):
     """Init sensor"""

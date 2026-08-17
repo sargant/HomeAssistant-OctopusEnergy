@@ -30,10 +30,9 @@ class OctopusEnergyElectricitySensor:
       "is_smart_meter": self._is_smart_meter
     }
 
-    export_name_suffix = " Export" if self._is_export == True else ""
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"electricity_{self._serial_number}_{self._mpan}")},
-      name=f"Octopus Energy Electricity{export_name_suffix} ({self._serial_number}/{self._mpan})",
+      name=f"Octopus Energy Electricity ({self._serial_number}/{self._mpan})",
       connections=set(),
       manufacturer=self._meter["manufacturer"],
       model=self._meter["model"],

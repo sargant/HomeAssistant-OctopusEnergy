@@ -19,4 +19,4 @@ class OctopusEnergyElectricityCurrentConsumptionHomeProDataLastRetrieved(Octopus
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Home Pro Current Consumption Data Last Retrieved Electricity"
+    return f"Home Pro Current Consumption Data Last Retrieved Electricity ({self._serial_number}/{self._mpan})"
