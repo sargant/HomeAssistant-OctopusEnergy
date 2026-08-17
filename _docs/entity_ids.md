@@ -1,6 +1,6 @@
 # Entity IDs and names
 
-The integration does not set entity IDs. Home Assistant creates them from its configured entity ID format, while the integration continues to provide a stable `unique_id` for every entity.
+As of v20.0.0, the integration does not set entity IDs. Home Assistant creates them from its configured entity ID format, while the integration continues to provide a stable `unique_id` for every entity.
 
 Entities attached to a device use Home Assistant's device/entity naming model:
 
@@ -13,7 +13,7 @@ With a device-and-entity ID format, Home Assistant can therefore create an ID su
 
 Existing registered entity IDs are not changed during an upgrade. Automations, dashboards and history continue to use the same IDs unless you explicitly rename or recreate them.
 
-The entity IDs shown elsewhere in this documentation are legacy examples. Use the entity picker or the entity's settings page to find the ID generated for your installation.
+The entity IDs shown elsewhere in this documentation assume your entity naming scheme is "`Device` `Entity`". Use the entity picker or the entity's settings page to find the ID generated for your installation.
 
 ## Recreate entity IDs
 
