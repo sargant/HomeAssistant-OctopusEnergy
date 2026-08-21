@@ -52,7 +52,7 @@ class OctopusEnergyFreeElectricitySessionBaseline(MultiCoordinatorEntity, Octopu
     """Init sensor."""
 
     MultiCoordinatorEntity.__init__(self, power_up_sessions_coordinator, [previous_rates_and_consumption_coordinator])
-    OctopusEnergyElectricitySensor.__init__(self, hass, meter, point, generate_legacy_entity_id=True)
+    OctopusEnergyElectricitySensor.__init__(self, hass, meter, point)
 
     self._previous_rates_and_consumption_coordinator = previous_rates_and_consumption_coordinator
     self._state = None
@@ -77,7 +77,7 @@ class OctopusEnergyFreeElectricitySessionBaseline(MultiCoordinatorEntity, Octopu
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Free Electricity Session Baseline {self._export_name_addition}Electricity ({self._serial_number}/{self._mpan})"
+    return f"Octoplus Free Electricity Session Baseline {self._export_name_addition}".rstrip()
   
   @property
   def entity_registry_enabled_default(self) -> bool:

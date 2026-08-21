@@ -5,7 +5,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 
 from homeassistant.util.dt import (now)
 from homeassistant.helpers.update_coordinator import (
@@ -35,8 +34,6 @@ class OctopusEnergyIntelligentCurrentState(CoordinatorEntity, OctopusEnergyIntel
     self._state = None
     self._attributes = {}
 
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
-
   @property
   def unique_id(self):
     """The id of the sensor."""
@@ -45,7 +42,7 @@ class OctopusEnergyIntelligentCurrentState(CoordinatorEntity, OctopusEnergyIntel
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Intelligent State ({self._device.id})"
+    return "Intelligent State"
 
   @property
   def icon(self):

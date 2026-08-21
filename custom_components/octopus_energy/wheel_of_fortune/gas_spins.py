@@ -5,7 +5,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (utcnow)
 from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity,
@@ -18,10 +17,11 @@ from homeassistant.components.sensor import (
 from ..coordinators.wheel_of_fortune import WheelOfFortuneSpinsCoordinatorResult
 from ..api_client import OctopusEnergyApiClient
 from ..utils.attributes import dict_to_typed_dict
+from .base import OctopusEnergyWheelOfFortuneSensor
 
 _LOGGER = logging.getLogger(__name__)
 
-class OctopusEnergyWheelOfFortuneGasSpins(CoordinatorEntity, RestoreSensor):
+class OctopusEnergyWheelOfFortuneGasSpins(CoordinatorEntity, OctopusEnergyWheelOfFortuneSensor, RestoreSensor):
   """Sensor for current wheel of fortune spins for gas"""
   
   _unrecorded_attributes = frozenset({"data_last_retrieved"})
@@ -29,13 +29,12 @@ class OctopusEnergyWheelOfFortuneGasSpins(CoordinatorEntity, RestoreSensor):
   def __init__(self, hass: HomeAssistant, coordinator, client: OctopusEnergyApiClient, account_id: str):
     """Init sensor."""
     CoordinatorEntity.__init__(self, coordinator)
+    OctopusEnergyWheelOfFortuneSensor.__init__(self, account_id)
   
     self._account_id = account_id
     self._client = client
     self._state = None
     self._attributes = {}
-
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):
@@ -45,7 +44,7 @@ class OctopusEnergyWheelOfFortuneGasSpins(CoordinatorEntity, RestoreSensor):
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Wheel Of Fortune Spins Gas ({self._account_id})"
+    return "Gas Spins"
 
   @property
   def icon(self):

@@ -7,7 +7,6 @@ from homeassistant.components.event import (
     EventExtraStoredData,
 )
 from homeassistant.helpers.restore_state import RestoreEntity
-from homeassistant.helpers.entity import generate_entity_id
 
 from ..const import EVENT_ALL_FREE_ELECTRICITY_SESSIONS
 
@@ -32,7 +31,6 @@ class OctopusEnergyOctoplusFreeElectricitySessionEvents(OctopusEnergyOctoplusSen
     self._last_updated = None
 
     self._attr_event_types = [EVENT_ALL_FREE_ELECTRICITY_SESSIONS]
-    self.entity_id = generate_entity_id("event.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):
@@ -42,7 +40,7 @@ class OctopusEnergyOctoplusFreeElectricitySessionEvents(OctopusEnergyOctoplusSen
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Free Electricity Session Events ({self._account_id})"
+    return "Free Electricity Session Events"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

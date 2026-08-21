@@ -15,8 +15,6 @@ from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity
 )
 
-from homeassistant.helpers.entity import generate_entity_id
-
 from ..coordinators import BaseCoordinatorResult
 from ..utils.attributes import dict_to_typed_dict
 from ..utils.error import exception_to_string
@@ -27,17 +25,12 @@ class OctopusEnergyBaseDataLastRetrieved(CoordinatorEntity, RestoreSensor):
   """Base sensor for data last retrieved."""
   _unrecorded_attributes = frozenset({ "attempts", "next_refresh" })
 
-  def __init__(self, hass, coordinator, generate_legacy_entity_id = True):
+  def __init__(self, hass, coordinator):
     """Init sensor."""
     CoordinatorEntity.__init__(self, coordinator)
     self._state = None
     self._attributes = {}
-
-    if generate_legacy_entity_id:
-      self._attr_has_entity_name = False
-      self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
-    else:
-      self._attr_has_entity_name = True
+    self._attr_has_entity_name = True
 
   @property
   def entity_registry_enabled_default(self) -> bool:
@@ -54,7 +47,7 @@ class OctopusEnergyBaseDataLastRetrieved(CoordinatorEntity, RestoreSensor):
   
   @property
   def entity_category(self):
-    """The category of the sensor"""
+    """The category of the sensor."""
     return EntityCategory.DIAGNOSTIC
 
   @property

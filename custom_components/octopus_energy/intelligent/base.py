@@ -14,11 +14,12 @@ class OctopusEnergyIntelligentSensor:
     """Init sensor"""
 
     self._device = device
+    self._attr_has_entity_name = True
     self._attr_device_info = DeviceInfo(
       identifiers={
         (DOMAIN, self._device.id)
       },
-      name=f"{self._device.make} {self._device.model} ({device_type_to_friendly_string(self._device.device_type)})",
+      name=f"{self._device.make} {self._device.model} ({device_type_to_friendly_string(self._device.device_type)}/{self._device.id})",
       connections=set(),
       manufacturer=self._device.make,
       model=self._device.model

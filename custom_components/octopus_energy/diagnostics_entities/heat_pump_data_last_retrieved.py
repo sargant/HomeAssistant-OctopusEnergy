@@ -20,4 +20,4 @@ class OctopusEnergyHeatPumpDataLastRetrieved(BaseOctopusEnergyHeatPumpSensor, Oc
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Heat Pump Data Last Retrieved ({self._heat_pump_id}/{self._account_id})"
+    return "Data Last Retrieved"

@@ -6,9 +6,10 @@ from homeassistant.components.text import TextEntity
 
 from homeassistant.helpers.restore_state import RestoreEntity
 
-from homeassistant.helpers.entity import generate_entity_id
+from homeassistant.helpers.entity import DeviceInfo
 
 from ..api_client_home_pro import OctopusEnergyHomeProApiClient
+from ..const import DOMAIN
 
 from ..utils.attributes import dict_to_typed_dict
 
@@ -24,7 +25,13 @@ class OctopusEnergyHomeProScreenText(TextEntity, RestoreEntity):
     self._account_id = account_id
     self._attr_native_value = None
 
-    self.entity_id = generate_entity_id("text.{}", self.unique_id, hass=hass)
+    self._attr_has_entity_name = True
+    self._attr_device_info = DeviceInfo(
+      identifiers={(DOMAIN, f"home_pro_{account_id}")},
+      name=f"Octopus Energy Home Pro ({account_id})",
+      connections=set(),
+      manufacturer="Octopus Energy",
+    )
 
   @property
   def unique_id(self):
@@ -34,7 +41,7 @@ class OctopusEnergyHomeProScreenText(TextEntity, RestoreEntity):
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Home Pro Screen ({self._account_id})"
+    return "Screen"
   
   @property
   def icon(self):

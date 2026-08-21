@@ -2,7 +2,6 @@ from datetime import datetime
 import logging
 
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (utcnow)
 
 from homeassistant.helpers.update_coordinator import (
@@ -39,8 +38,6 @@ class OctopusEnergyFreeElectricitySessionsCalendar(OctopusEnergyOctoplusSensor, 
     self._event = None
     self._events = []
 
-    self.entity_id = generate_entity_id("calendar.{}", self.unique_id, hass=hass)
-
   @property
   def unique_id(self):
     """The id of the sensor."""
@@ -49,7 +46,7 @@ class OctopusEnergyFreeElectricitySessionsCalendar(OctopusEnergyOctoplusSensor, 
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Free Electricity ({self._account_id})"
+    return "Free Electricity"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

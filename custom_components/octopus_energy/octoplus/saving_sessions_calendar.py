@@ -2,7 +2,6 @@ from datetime import datetime
 import logging
 
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (utcnow)
 
 from homeassistant.helpers.update_coordinator import (
@@ -38,8 +37,6 @@ class OctopusEnergySavingSessionsCalendar(OctopusEnergyOctoplusSensor, Coordinat
     self._event = None
     self._events = []
 
-    self.entity_id = generate_entity_id("calendar.{}", self.unique_id, hass=hass)
-
   @property
   def unique_id(self):
     """The id of the sensor."""
@@ -48,7 +45,7 @@ class OctopusEnergySavingSessionsCalendar(OctopusEnergyOctoplusSensor, Coordinat
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Saving Sessions ({self._account_id})"
+    return "Saving Sessions"
 
   @property
   def event(self) -> CalendarEvent | None:

@@ -1,11 +1,13 @@
 from .base import OctopusEnergyBaseDataLastRetrieved
+from ..wheel_of_fortune.base import OctopusEnergyWheelOfFortuneSensor
 
-class OctopusEnergyWheelOfFortuneDataLastRetrieved(OctopusEnergyBaseDataLastRetrieved):
+class OctopusEnergyWheelOfFortuneDataLastRetrieved(OctopusEnergyWheelOfFortuneSensor, OctopusEnergyBaseDataLastRetrieved):
   """Sensor for displaying the last time the wheel of fortune data was last retrieved."""
 
   def __init__(self, hass, coordinator, account_id):
     """Init sensor."""
     self._account_id = account_id
+    OctopusEnergyWheelOfFortuneSensor.__init__(self, account_id)
     OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator)
 
   @property
@@ -16,4 +18,4 @@ class OctopusEnergyWheelOfFortuneDataLastRetrieved(OctopusEnergyBaseDataLastRetr
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Wheel Of Fortune Data Last Retrieved ({self._account_id})"
+    return "Data Last Retrieved"

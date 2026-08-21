@@ -7,7 +7,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 
 from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity
@@ -37,7 +36,6 @@ class OctopusEnergyIntelligentTargetTime(CoordinatorEntity, TimeEntity, OctopusE
     self._client = client
     self._account_id = account_id
     self._attributes = {}
-    self.entity_id = generate_entity_id("time.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):
@@ -47,7 +45,7 @@ class OctopusEnergyIntelligentTargetTime(CoordinatorEntity, TimeEntity, OctopusE
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Intelligent Target Time ({self._device.id})"
+    return "Intelligent Target Time"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

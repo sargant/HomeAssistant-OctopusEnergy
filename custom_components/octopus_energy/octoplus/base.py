@@ -11,6 +11,7 @@ class OctopusEnergyOctoplusSensor:
   def __init__(self, account_id: str):
     """Init sensor"""
 
+    self._attr_has_entity_name = True
     self._attr_device_info = DeviceInfo(
       identifiers={
         (DOMAIN, f"octoplus-{account_id}")

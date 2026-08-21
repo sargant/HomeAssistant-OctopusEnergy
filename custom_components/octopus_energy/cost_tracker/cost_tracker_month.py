@@ -3,7 +3,6 @@ import logging
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.exceptions import ServiceValidationError
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (now)
 
 from homeassistant.components.sensor import (
@@ -55,9 +54,8 @@ class OctopusEnergyCostTrackerMonthSensor(RestoreSensor, BaseCostTracker):
     self._peak_type = peak_type
     
     self._hass = hass
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
 
-    BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID])
+    BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID], config[CONFIG_COST_TRACKER_NAME])
 
   @property
   def entity_registry_enabled_default(self) -> bool:
@@ -79,7 +77,7 @@ class OctopusEnergyCostTrackerMonthSensor(RestoreSensor, BaseCostTracker):
   @property
   def name(self):
     """Name of the sensor."""
-    base_name = f"Octopus Energy Cost Tracker {self._config[CONFIG_COST_TRACKER_NAME]} Month"
+    base_name = "Monthly Cost"
     if self._peak_type is not None:
       return f"{base_name} ({self._peak_type})"
 

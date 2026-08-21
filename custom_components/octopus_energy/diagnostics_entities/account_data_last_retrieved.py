@@ -1,4 +1,8 @@
+from homeassistant.helpers.device_registry import DeviceEntryType, DeviceInfo
+
 from .base import OctopusEnergyBaseDataLastRetrieved
+from ..const import DOMAIN
+
 
 class OctopusEnergyAccountDataLastRetrieved(OctopusEnergyBaseDataLastRetrieved):
   """Sensor for displaying the last time the account data was last retrieved."""
@@ -7,6 +11,12 @@ class OctopusEnergyAccountDataLastRetrieved(OctopusEnergyBaseDataLastRetrieved):
     """Init sensor."""
     self._account_id = account_id
     OctopusEnergyBaseDataLastRetrieved.__init__(self, hass, coordinator)
+    self._attr_device_info = DeviceInfo(
+      identifiers={(DOMAIN, f"account-{account_id}")},
+      name=f"Octopus Energy Account ({account_id})",
+      connections=set(),
+      entry_type=DeviceEntryType.SERVICE,
+    )
 
   @property
   def unique_id(self):
@@ -16,4 +26,4 @@ class OctopusEnergyAccountDataLastRetrieved(OctopusEnergyBaseDataLastRetrieved):
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Account Data Last Retrieved ({self._account_id})"
+    return "Data Last Retrieved"

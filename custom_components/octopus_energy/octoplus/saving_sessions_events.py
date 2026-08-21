@@ -7,7 +7,6 @@ from homeassistant.components.event import (
     EventExtraStoredData,
 )
 from homeassistant.helpers.restore_state import RestoreEntity
-from homeassistant.helpers.entity import generate_entity_id
 
 from ..const import DATA_POWER_DOWN_FORCE_UPDATE, DOMAIN, EVENT_ALL_SAVING_SESSIONS
 
@@ -33,7 +32,6 @@ class OctopusEnergyOctoplusSavingSessionEvents(OctopusEnergyOctoplusSensor, Even
     self._last_updated = None
 
     self._attr_event_types = [EVENT_ALL_SAVING_SESSIONS]
-    self.entity_id = generate_entity_id("event.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):
@@ -43,7 +41,7 @@ class OctopusEnergyOctoplusSavingSessionEvents(OctopusEnergyOctoplusSensor, Even
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Octoplus Saving Session Events ({self._account_id})"
+    return "Saving Session Events"
 
   async def async_added_to_hass(self):
     """Call when entity about to be added to hass."""

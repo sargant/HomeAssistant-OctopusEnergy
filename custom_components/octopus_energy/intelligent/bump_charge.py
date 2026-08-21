@@ -5,7 +5,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 
 from homeassistant.helpers.update_coordinator import (
   CoordinatorEntity
@@ -37,7 +36,6 @@ class OctopusEnergyIntelligentBumpCharge(CoordinatorEntity, SwitchEntity, Octopu
     self._account_id = account_id
     self._attributes = {}
     self._is_mocked = is_mocked
-    self.entity_id = generate_entity_id("switch.{}", self.unique_id, hass=hass)
 
   @property
   def unique_id(self):
@@ -47,7 +45,7 @@ class OctopusEnergyIntelligentBumpCharge(CoordinatorEntity, SwitchEntity, Octopu
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Intelligent Bump Charge ({self._device.id})"
+    return "Intelligent Bump Charge"
 
   @property
   def icon(self):

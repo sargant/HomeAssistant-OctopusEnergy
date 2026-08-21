@@ -6,7 +6,6 @@ from homeassistant.const import (
     STATE_UNKNOWN,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.exceptions import ServiceValidationError
 
 from homeassistant.util.dt import (utcnow, as_local)
@@ -55,8 +54,6 @@ class OctopusEnergyIntelligentDispatching(MultiCoordinatorEntity, BinarySensorEn
     self._minimum_dispatch_duration_in_minutes = minimum_dispatch_duration_in_minutes
     self.__init_attributes__([], [], [])
 
-    self.entity_id = generate_entity_id("binary_sensor.{}", self.unique_id, hass=hass)
-
   @property
   def unique_id(self):
     """The id of the sensor."""
@@ -65,7 +62,7 @@ class OctopusEnergyIntelligentDispatching(MultiCoordinatorEntity, BinarySensorEn
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Intelligent Dispatching ({self._device.id})"
+    return "Intelligent Dispatching"
 
   @property
   def icon(self):

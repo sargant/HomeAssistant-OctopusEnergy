@@ -46,7 +46,7 @@ class OctopusEnergyHeatPumpLifetimeEnergyInput(CoordinatorEntity, BaseOctopusEne
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Lifetime Energy Input Heat Pump ({self._heat_pump_id})"
+    return "Lifetime Energy Input"
 
   @property
   def state_class(self):

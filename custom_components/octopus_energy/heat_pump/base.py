@@ -1,6 +1,6 @@
 from homeassistant.core import HomeAssistant
 
-from homeassistant.helpers.entity import generate_entity_id, DeviceInfo
+from homeassistant.helpers.entity import DeviceInfo
 
 from ..const import (
   DOMAIN,
@@ -18,11 +18,11 @@ class BaseOctopusEnergyHeatPumpSensor:
     self._attributes = {
     }
 
-    self.entity_id = generate_entity_id(entity_domain + ".{}", self.unique_id, hass=hass)
-
+    self._attr_has_entity_name = True
+    heat_pump_identity = heat_pump_id if heat_pump_id == heat_pump.serialNumber else f"{heat_pump_id}/{heat_pump.serialNumber}"
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"heat_pump_{heat_pump.serialNumber}")},
-      name=f"Heat Pump ({heat_pump.serialNumber})",
+      name=f"Octopus Energy Heat Pump ({heat_pump_identity})",
       connections=set(),
       manufacturer="Octopus" if heat_pump.model is not None and "cosy" in heat_pump.model.lower() else None,
       model=heat_pump.model,
@@ -43,11 +43,11 @@ class BaseOctopusEnergyHeatPumpSensorSensor(BaseOctopusEnergyHeatPumpSensor):
       "code": sensor.code
     }
 
-    self.entity_id = generate_entity_id(entity_domain + ".{}", self.unique_id, hass=hass)
-
+    self._attr_has_entity_name = True
+    sensor_name = sensor.displayName if sensor.displayName is not None else sensor.code
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"heat_pump_sensor_{heat_pump.serialNumber}_{sensor.code}")},
-      name=f"Heat Pump Sensor ({sensor.code})",
+      name=f"Octopus Energy Heat Pump Sensor {sensor_name} ({heat_pump_id}/{sensor.code})",
       connections=set(),
       manufacturer="Octopus" if heat_pump.model is not None and "cosy" in heat_pump.model.lower() else None,
       model=heat_pump.model,
