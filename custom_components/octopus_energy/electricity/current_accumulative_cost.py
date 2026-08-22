@@ -68,7 +68,7 @@ class OctopusEnergyCurrentAccumulativeElectricityCost(MultiCoordinatorEntity, Oc
     if self._peak_type is not None:
       return f"{get_peak_name(self._peak_type)} {base_name}".capitalize()
 
-    return base_name
+    return base_name.capitalize()
 
   @property
   def device_class(self):
