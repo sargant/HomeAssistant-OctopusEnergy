@@ -223,7 +223,7 @@ async def test_meter_diagnostic_uses_preserved_human_name(hass):
 
   assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_previous_consumption_rates_data_last_retrieved"
   assert entity.has_entity_name is True
-  assert entity.name == "Previous Consumption and Rates Data Last Retrieved"
+  assert entity.name == "Previous consumption and rates data last retrieved"
   assert entity.entity_id == f"sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_previous_consumption_and_rates_data_last_retrieved"
 
   registry_entry = entity_registry.async_get(hass).async_get(entity.entity_id)
@@ -270,10 +270,10 @@ async def test_meter_entity_names_remove_only_device_context(hass):
     40,
   )
 
-  assert peak_consumption.name == "Off Peak Current Accumulative Consumption"
-  assert tariff_cost.name == "Agile Previous Accumulative Cost Override"
-  assert gas_consumption.name == "Current Accumulative Consumption"
-  assert gas_total.name == "Current Total Consumption (kWh)"
+  assert peak_consumption.name == "Off peak current accumulative consumption"
+  assert tariff_cost.name == "Agile previous accumulative cost override"
+  assert gas_consumption.name == "Current accumulative consumption"
+  assert gas_total.name == "Current total consumption (kWh)"
 
 
 async def test_octoplus_baseline_keeps_legacy_entity_id(hass):
