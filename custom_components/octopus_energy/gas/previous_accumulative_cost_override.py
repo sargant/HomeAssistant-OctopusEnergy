@@ -67,7 +67,7 @@ class OctopusEnergyPreviousAccumulativeGasCostOverride(CoordinatorEntity, Octopu
   @property
   def name(self):
     """Name of the sensor."""
-    return f"{self._config[CONFIG_TARIFF_COMPARISON_NAME]} Previous Accumulative Cost Override"
+    return f"{self._config[CONFIG_TARIFF_COMPARISON_NAME]} previous accumulative cost override".strip().capitalize()
 
   @property
   def device_class(self):

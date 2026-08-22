@@ -53,7 +53,7 @@ class OctopusEnergyElectricityNextRate(CoordinatorEntity, OctopusEnergyElectrici
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Next Rate {self._export_name_addition}".rstrip()
+    return f"Next rate {self._export_name_addition}".rstrip().capitalize()
   
   @property
   def state_class(self):

@@ -63,9 +63,9 @@ class OctopusEnergyCurrentAccumulativeElectricityConsumption(MultiCoordinatorEnt
   @property
   def name(self):
     """Name of the sensor."""
-    base_name = "Current Accumulative Consumption"
+    base_name = "Current accumulative consumption"
     if self._peak_type is not None:
-      return f"{get_peak_name(self._peak_type)} {base_name}"
+      return f"{get_peak_name(self._peak_type)} {base_name}".capitalize()
 
     return base_name
 

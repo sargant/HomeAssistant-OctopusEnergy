@@ -40,7 +40,7 @@ class OctopusEnergyElectricityCurrentStandingCharge(CoordinatorEntity, OctopusEn
   @property
   def name(self):
     """Name of the sensor."""
-    return f'Current Standing Charge {self._export_name_addition}'.rstrip()
+    return f'Current standing charge {self._export_name_addition}'.rstrip().capitalize()
 
   @property
   def state_class(self):

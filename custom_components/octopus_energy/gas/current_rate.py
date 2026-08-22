@@ -55,7 +55,7 @@ class OctopusEnergyGasCurrentRate(CoordinatorEntity, OctopusEnergyGasSensor, Res
   @property
   def name(self):
     """Name of the sensor."""
-    return 'Current Rate'
+    return 'Current rate'
   
   @property
   def state_class(self):
