@@ -202,7 +202,7 @@ async def test_export_variant_preserves_human_name_order(hass):
 
   assert entity.unique_id == f"octopus_energy_electricity_{ELECTRICITY_SERIAL}_{MPAN}_export_off_peak"
   assert entity.has_entity_name is True
-  assert entity.name == "Off Peak Export"
+  assert entity.name == "Off peak export"
   assert entity.entity_id == f"binary_sensor.octopus_energy_electricity_{ELECTRICITY_SERIAL.lower()}_{MPAN}_off_peak_export"
 
   registry_entry = entity_registry.async_get(hass).async_get(entity.entity_id)
@@ -272,7 +272,7 @@ async def test_meter_entity_names_remove_only_device_context(hass):
 
   assert peak_consumption.name == "Off peak current accumulative consumption"
   assert tariff_cost.name == "Agile previous accumulative cost override"
-  assert gas_consumption.name == "Current accumulative consumption"
+  assert gas_consumption.name == "Current accumulative consumption (kWh)"
   assert gas_total.name == "Current total consumption (kWh)"
 
 
