@@ -38,7 +38,7 @@ class OctopusEnergyElectricityPreviousConsumptionOverrideRates(OctopusEnergyElec
   @property
   def name(self):
     """Name of the sensor."""
-    return f"{self._config[CONFIG_TARIFF_COMPARISON_NAME]} Previous Consumption Rates {self._export_name_addition}".rstrip()
+    return f"{self._config[CONFIG_TARIFF_COMPARISON_NAME]} Previous consumption rates {self._export_name_addition}".strip().capitalize()
 
   async def async_added_to_hass(self):
     """Call when entity about to be added to hass."""

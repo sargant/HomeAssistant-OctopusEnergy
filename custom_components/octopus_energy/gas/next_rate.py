@@ -51,7 +51,7 @@ class OctopusEnergyGasNextRate(CoordinatorEntity, OctopusEnergyGasSensor, Restor
   @property
   def name(self):
     """Name of the sensor."""
-    return 'Next Rate'
+    return 'Next rate'
   
   @property
   def state_class(self):

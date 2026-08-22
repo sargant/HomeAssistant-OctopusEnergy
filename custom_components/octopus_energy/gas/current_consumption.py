@@ -44,7 +44,7 @@ class OctopusEnergyCurrentGasConsumption(CoordinatorEntity, OctopusEnergyGasSens
   def entity_registry_enabled_default(self) -> bool:
     """Return if the entity should be enabled when first added.
 
-    This only applies when fist added to the entity registry.
+    This only applies when first added to the entity registry.
     """
     return False
 
@@ -56,7 +56,7 @@ class OctopusEnergyCurrentGasConsumption(CoordinatorEntity, OctopusEnergyGasSens
   @property
   def name(self):
     """Name of the sensor."""
-    return "Current Consumption"
+    return "Current consumption"
 
   @property
   def device_class(self):

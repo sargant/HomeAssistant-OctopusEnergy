@@ -56,7 +56,7 @@ class OctopusEnergyCurrentElectricityConsumption(CoordinatorEntity, OctopusEnerg
   @property
   def name(self):
     """Name of the sensor."""
-    return "Current Consumption"
+    return "Current consumption"
 
   @property
   def device_class(self):

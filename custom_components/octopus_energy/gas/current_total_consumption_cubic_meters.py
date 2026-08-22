@@ -45,7 +45,7 @@ class OctopusEnergyCurrentTotalGasConsumptionCubicMeters(CoordinatorEntity, Octo
   def entity_registry_enabled_default(self) -> bool:
     """Return if the entity should be enabled when first added.
 
-    This only applies when fist added to the entity registry.
+    This only applies when first added to the entity registry.
     """
     return self._is_smart_meter
 
@@ -57,7 +57,7 @@ class OctopusEnergyCurrentTotalGasConsumptionCubicMeters(CoordinatorEntity, Octo
   @property
   def name(self):
     """Name of the sensor."""
-    return "Current Total Consumption (m3)"
+    return f"Current total consumption ({UnitOfVolume.CUBIC_METERS})"
 
   @property
   def device_class(self):

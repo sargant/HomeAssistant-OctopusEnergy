@@ -38,13 +38,13 @@ class OctopusEnergyElectricityPreviousConsumptionRates(OctopusEnergyElectricityS
   @property
   def name(self):
     """Name of the sensor."""
-    return f"Previous Consumption Rates {self._export_name_addition}".rstrip()
+    return f"Previous consumption rates {self._export_name_addition}".rstrip().capitalize()
   
   @property
   def entity_registry_enabled_default(self) -> bool:
     """Return if the entity should be enabled when first added.
 
-    This only applies when fist added to the entity registry.
+    This only applies when first added to the entity registry.
     """
     return False
 

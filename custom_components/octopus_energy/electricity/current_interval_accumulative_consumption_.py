@@ -47,7 +47,7 @@ class OctopusEnergyCurrentElectricityIntervalAccumulativeConsumption(Coordinator
   @property
   def name(self):
     """Name of the sensor."""
-    return "Current Interval Accumulative Consumption"
+    return "Current interval accumulative consumption"
   
   @property
   def entity_registry_enabled_default(self) -> bool:

@@ -56,7 +56,7 @@ class OctopusEnergyPreviousAccumulativeElectricityConsumption(CoordinatorEntity,
   def entity_registry_enabled_default(self) -> bool:
     """Return if the entity should be enabled when first added.
 
-    This only applies when fist added to the entity registry.
+    This only applies when first added to the entity registry.
     """
     return self._is_smart_meter and self._peak_type is None
 
@@ -72,7 +72,7 @@ class OctopusEnergyPreviousAccumulativeElectricityConsumption(CoordinatorEntity,
   @property
   def name(self):
     """Name of the sensor."""
-    base_name = f"Previous Accumulative Consumption {self._export_name_addition}".rstrip()
+    base_name = f"Previous accumulative consumption {self._export_name_addition}".rstrip().capitalize()
     
     if self._peak_type is not None:
       return f"{base_name} ({get_peak_name(self._peak_type)})"
