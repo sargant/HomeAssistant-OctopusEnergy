@@ -3,7 +3,6 @@ import logging
 
 from homeassistant.core import Event, HomeAssistant, callback
 from homeassistant.exceptions import ServiceValidationError
-from homeassistant.helpers.entity import generate_entity_id
 from homeassistant.util.dt import (now)
 
 from homeassistant.components.sensor import (
@@ -33,6 +32,7 @@ from ..const import (
 from . import accumulate_cost
 
 from ..utils.attributes import dict_to_typed_dict
+from ..utils.rate_information import get_peak_name
 from .base import BaseCostTracker
 
 _LOGGER = logging.getLogger(__name__)
@@ -57,7 +57,7 @@ class OctopusEnergyCostTrackerWeekSensor(RestoreSensor, BaseCostTracker):
     self._hass = hass
     self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
 
-    BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID])
+    BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID], config[CONFIG_COST_TRACKER_NAME])
 
   @property
   def entity_registry_enabled_default(self) -> bool:
@@ -79,9 +79,9 @@ class OctopusEnergyCostTrackerWeekSensor(RestoreSensor, BaseCostTracker):
   @property
   def name(self):
     """Name of the sensor."""
-    base_name = f"Octopus Energy Cost Tracker {self._config[CONFIG_COST_TRACKER_NAME]} Week"
+    base_name = f"Weekly cost"
     if self._peak_type is not None:
-      return f"{base_name} ({self._peak_type})"
+      return f"{base_name} ({get_peak_name(self._peak_type)})".capitalize()
 
     return base_name
 
