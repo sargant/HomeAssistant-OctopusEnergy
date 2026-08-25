@@ -1,3 +1,5 @@
+**This is a fork to that moves to the [recommended Home Assistant entity naming conventions](https://developers.home-assistant.io/docs/core/entity/#entity-naming). It intends to track the upstream `develop` branch.**
+
 # Home Assistant Octopus Energy
 
 ![installation_badge](https://img.shields.io/badge/dynamic/json?color=41BDF5&logo=home-assistant&label=integration%20usage&suffix=%20installs&cacheSeconds=15600&url=https://analytics.home-assistant.io/custom_integrations.json&query=$.octopus_energy.total) [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/bottlecapdave)
