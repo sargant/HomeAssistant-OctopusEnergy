@@ -9,7 +9,7 @@ def get_cost_tracker_unique_id(tracker_name: str, peak_type = None):
 
 
 class BaseCostTracker:
-  def __init__(self, hass, source_entity_id: str, tracker_name: str):
+  def __init__(self, tracker_name: str):
     self._attr_has_entity_name = True
     self._attr_device_info = DeviceInfo(
       identifiers={(DOMAIN, f"cost-tracker-{tracker_name}")},

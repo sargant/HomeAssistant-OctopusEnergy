@@ -69,7 +69,7 @@ class OctopusEnergyCostTrackerSensor(CoordinatorEntity, RestoreSensor, BaseCostT
     
     self._hass = hass
 
-    BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID], config[CONFIG_COST_TRACKER_NAME])
+    BaseCostTracker.__init__(self, config[CONFIG_COST_TRACKER_NAME])
 
   @property
   def entity_registry_enabled_default(self) -> bool:
@@ -90,7 +90,7 @@ class OctopusEnergyCostTrackerSensor(CoordinatorEntity, RestoreSensor, BaseCostT
   @property
   def name(self):
     """Name of the sensor."""
-    base_name = f"Cost"
+    base_name = "Cost"
     if self._peak_type is not None:
       return f"{base_name} ({get_peak_name(self._peak_type)})".capitalize()
 
