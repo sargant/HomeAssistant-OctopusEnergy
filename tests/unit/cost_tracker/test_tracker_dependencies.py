@@ -130,11 +130,6 @@ async def test_accumulator_resolves_current_entity_id_from_unique_id(sensor_clas
   registry.async_get_entity_id.return_value = current_entity_id
 
   with (
-    patch(
-      "custom_components.octopus_energy.cost_tracker.base.async_entity_id_to_device",
-      return_value=None,
-    ),
-    patch(f"{module_name}.generate_entity_id", return_value="sensor.accumulator"),
     patch(f"{module_name}.er.async_get", return_value=registry),
     patch.object(RestoreSensor, "async_added_to_hass", new=AsyncMock()),
     patch(f"{module_name}.async_track_state_change_event", return_value=Mock()) as track_state,
