@@ -55,7 +55,6 @@ class OctopusEnergyCostTrackerWeekSensor(RestoreSensor, BaseCostTracker):
     self._peak_type = peak_type
     
     self._hass = hass
-    self.entity_id = generate_entity_id("sensor.{}", self.unique_id, hass=hass)
 
     BaseCostTracker.__init__(self, hass, config[CONFIG_COST_TRACKER_TARGET_ENTITY_ID], config[CONFIG_COST_TRACKER_NAME])
 
